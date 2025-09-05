@@ -1,3 +1,4 @@
+import Counter from './components/Counter';
 import React from 'react';
 import Header from './components/Header';
 import UserProfile from './components/UserProfile';
@@ -14,6 +15,7 @@ function App() {
         bio="Loves hiking and photography" 
       />
       <MainContent />
+      <Counter />
       <Footer />
     </div>
   );
