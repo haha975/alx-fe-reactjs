@@ -4,19 +4,20 @@ import { Link } from "react-router-dom";
 function Navbar() {
   const navStyle = {
     display: "flex",
+    justifyContent: "space-between", // changed from margin/gap
     alignItems: "center",
-    gap: "16px",
     padding: "12px 20px",
-    background: "#0b74de",
+    backgroundColor: "#0b74de", // changed from background
     color: "white",
   };
+
   const brandStyle = { fontWeight: 800, fontSize: "18px" };
   const linkStyle = { color: "white", textDecoration: "none", fontWeight: 600 };
 
   return (
     <nav style={navStyle}>
       <div style={brandStyle}>My Company</div>
-      <div style={{ marginLeft: 20, display: "flex", gap: 12 }}>
+      <div style={{ display: "flex", gap: "12px" }}>
         <Link to="/" style={linkStyle}>Home</Link>
         <Link to="/about" style={linkStyle}>About</Link>
         <Link to="/services" style={linkStyle}>Services</Link>
