@@ -1,9 +1,14 @@
-import React from 'react';
+import React from "react";
 
 function Footer() {
   return (
-    <footer style={{ backgroundColor: 'black', color: 'white', textAlign: 'center', padding: '10px', marginTop: '20px' }}>
-      <p>&copy; 2025 My Favorite Cities App</p>
+    <footer style={{
+      padding: "12px 20px",
+      backgroundColor: "#f2f2f2",
+      textAlign: "center",
+      fontFamily: "Arial, sans-serif"
+    }}>
+      <small>© {new Date().getFullYear()} My Company. All rights reserved.</small>
     </footer>
   );
 }
