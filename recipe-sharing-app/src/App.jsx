@@ -4,7 +4,6 @@ import AddRecipeForm from './components/AddRecipeForm'
 import RecipeList from './components/RecipeList'
 import RecipeDetails from './components/RecipeDetails'
 
-// Wrapper to extract ID from URL
 const RecipeDetailsWrapper = () => {
   const { id } = useParams()
   return <RecipeDetails recipeId={parseInt(id)} />
@@ -17,19 +16,8 @@ function App() {
         <Link to="/">Home</Link>
       </nav>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <div>
-              <AddRecipeForm />
-              <RecipeList />
-            </div>
-          }
-        />
-        <Route
-          path="/recipes/:id"
-          element={<RecipeDetailsWrapper />}
-        />
+        <Route path="/" element={<><AddRecipeForm /><RecipeList /></>} />
+        <Route path="/recipes/:id" element={<RecipeDetailsWrapper />} />
       </Routes>
     </Router>
   )
