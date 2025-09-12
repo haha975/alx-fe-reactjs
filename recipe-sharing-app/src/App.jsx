@@ -1,8 +1,14 @@
 import React from 'react'
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Link, useParams } from 'react-router-dom'
 import AddRecipeForm from './components/AddRecipeForm'
 import RecipeList from './components/RecipeList'
 import RecipeDetails from './components/RecipeDetails'
+
+// Wrapper to extract ID from URL
+const RecipeDetailsWrapper = () => {
+  const { id } = useParams()
+  return <RecipeDetails recipeId={parseInt(id)} />
+}
 
 function App() {
   return (
@@ -27,13 +33,6 @@ function App() {
       </Routes>
     </Router>
   )
-}
-
-// Wrapper to extract ID from URL
-import { useParams } from 'react-router-dom'
-const RecipeDetailsWrapper = () => {
-  const { id } = useParams()
-  return <RecipeDetails recipeId={parseInt(id)} />
 }
 
 export default App
