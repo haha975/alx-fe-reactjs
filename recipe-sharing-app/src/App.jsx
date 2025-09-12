@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link, useParams } from 'react-r
 import AddRecipeForm from './components/AddRecipeForm'
 import RecipeList from './components/RecipeList'
 import RecipeDetails from './components/RecipeDetails'
+import SearchBar from './components/SearchBar'
 
 const RecipeDetailsWrapper = () => {
   const { id } = useParams()
@@ -16,7 +17,16 @@ function App() {
         <Link to="/">Home</Link>
       </nav>
       <Routes>
-        <Route path="/" element={<><AddRecipeForm /><RecipeList /></>} />
+        <Route
+          path="/"
+          element={
+            <div>
+              <SearchBar />
+              <AddRecipeForm />
+              <RecipeList />
+            </div>
+          }
+        />
         <Route path="/recipes/:id" element={<RecipeDetailsWrapper />} />
       </Routes>
     </Router>
