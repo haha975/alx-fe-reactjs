@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { getUser } from '../services/githubService';
+import { fetchUserData } from '../services/githubService';
 
 export default function UserDetail() {
   const { login } = useParams();
@@ -14,7 +14,7 @@ export default function UserDetail() {
       setLoading(true);
       setError(null);
       try {
-        const data = await getUser(login);
+        const data = await fetchUserData(login);
         if (mounted) setUser(data);
       } catch (err) {
         if (mounted) setError(err.message || 'Failed to fetch user');
