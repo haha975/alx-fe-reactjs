@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { searchUsers } from "../services/githubService";
+import { fetchUserData, searchUsers } from "../services/githubService";
 
 export default function Search() {
   const [username, setUsername] = useState("");
@@ -13,8 +13,17 @@ export default function Search() {
     e.preventDefault();
     setLoading(true);
     setError(false);
+
     try {
-      const users = await searchUsers({ username, location, minRepos });
+      let users = [];
+      if (username && !location && minRepos === 0) {
+        // Single user search using fetchUserData
+        const user = await fetchUserData(username);
+        users = [user]; // wrap in array for consistency
+      } else {
+        // Advanced search
+        users = await searchUsers({ username, location, minRepos });
+      }
       setResults(users);
     } catch (err) {
       setError(true);
@@ -62,7 +71,6 @@ export default function Search() {
                 <img src={user.avatar_url} alt={user.login} className="w-16 h-16 rounded-full" />
                 <div>
                   <p className="font-bold">{user.login}</p>
-                  {/* ✅ This line includes html_url */}
                   <a
                     href={user.html_url}
                     target="_blank"
