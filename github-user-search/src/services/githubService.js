@@ -8,15 +8,13 @@ const api = axios.create({
   headers: token ? { Authorization: `token ${token}` } : {}
 });
 
-// Search users by query (returns array of users)
-export async function searchUsers(query) {
-  const q = encodeURIComponent(query);
-  const res = await api.get(`/search/users?q=${q}&per_page=20`);
-  return res.data.items;
-}
-
-// Get a single user's details
-export async function getUser(username) {
-  const res = await api.get(`/users/${username}`);
+/**
+ * Fetch a single GitHub user's data by username.
+ * Uses endpoint: GET /users/{username}
+ * Name required by task: fetchUserData
+ */
+export async function fetchUserData(username) {
+  if (!username) throw new Error('username is required');
+  const res = await api.get(`/users/${encodeURIComponent(username)}`);
   return res.data;
 }

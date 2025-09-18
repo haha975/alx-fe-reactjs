@@ -1,6 +1,7 @@
+// src/App.jsx
 import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import Home from './components/Home';
+import Search from './components/Search';
 import UserDetail from './components/UserDetail';
 
 export default function App() {
@@ -14,7 +15,7 @@ export default function App() {
 
       <main>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Search />} />
           <Route path="/user/:login" element={<UserDetail />} />
         </Routes>
       </main>
