@@ -3,24 +3,43 @@
     "id": 1,
     "title": "Spaghetti Carbonara",
     "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-    "image": "https://via.placeholder.com/150"
+    "image": "https://via.placeholder.com/400x200",
+    "ingredients": [
+      "200g spaghetti",
+      "100g pancetta",
+      "2 eggs",
+      "50g parmesan cheese",
+      "Salt and pepper"
+    ],
+    "instructions": [
+      "Boil spaghetti until al dente.",
+      "Cook pancetta until crisp.",
+      "Mix eggs and parmesan in a bowl.",
+      "Combine spaghetti with pancetta and remove from heat.",
+      "Quickly mix in egg-cheese mixture.",
+      "Season with salt and pepper and serve."
+    ]
   },
   {
     "id": 2,
     "title": "Chicken Tikka Masala",
     "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
-    "image": "https://via.placeholder.com/150"
-  },
-  {
-    "id": 3,
-    "title": "Beef Stroganoff",
-    "summary": "Tender strips of beef in a creamy mushroom sauce served over noodles.",
-    "image": "https://via.placeholder.com/150"
-  },
-  {
-    "id": 4,
-    "title": "Vegetable Stir Fry",
-    "summary": "Fresh vegetables stir fried with soy sauce and garlic, served over rice.",
-    "image": "https://via.placeholder.com/150"
+    "image": "https://via.placeholder.com/400x200",
+    "ingredients": [
+      "500g chicken breast",
+      "200g yogurt",
+      "2 tbsp tikka masala spice",
+      "1 onion",
+      "200ml tomato puree",
+      "50ml cream"
+    ],
+    "instructions": [
+      "Marinate chicken in yogurt and tikka masala spice for 2 hours.",
+      "Grill chicken until cooked.",
+      "Sauté onion in a pan, add tomato puree and simmer.",
+      "Add grilled chicken to sauce.",
+      "Stir in cream and cook for 5 minutes.",
+      "Serve hot with rice or naan."
+    ]
   }
 ]
