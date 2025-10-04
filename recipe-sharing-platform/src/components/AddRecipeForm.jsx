@@ -4,39 +4,43 @@ import React, { useState } from "react";
 export default function AddRecipeForm() {
   const [title, setTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
-  const [steps, setSteps] = useState(""); // renamed from instructions
+  const [steps, setSteps] = useState("");
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Simple validation
+  // ✅ Separate validate function
+  const validate = () => {
     const newErrors = {};
     if (!title.trim()) newErrors.title = "Title is required";
     if (!ingredients.trim()) newErrors.ingredients = "Ingredients are required";
     if (ingredients.split(",").length < 2)
       newErrors.ingredients = "Include at least two ingredients, separated by commas";
-    if (!steps.trim()) newErrors.steps = "Steps are required"; // validation for steps
+    if (!steps.trim()) newErrors.steps = "Steps are required";
+    return newErrors;
+  };
 
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const validationErrors = validate(); // call validate
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
       setSuccessMessage("");
       return;
     }
 
-    // If valid, log the data (replace with actual POST later)
+    // If valid, log the data
     console.log({
       title,
       ingredients: ingredients.split(",").map((i) => i.trim()),
-      steps, // include steps
+      steps,
     });
 
     setSuccessMessage("Recipe added successfully!");
     setErrors({});
     setTitle("");
     setIngredients("");
-    setSteps(""); // reset steps
+    setSteps("");
   };
 
   return (
