@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* optional: some tiny base styles to make it obvious Tailwind works */
+html,body,#root { height: 100%; }
+body { @apply bg-white; }
