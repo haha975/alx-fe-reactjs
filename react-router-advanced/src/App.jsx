@@ -1,15 +1,12 @@
-// src/App.jsx
 import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link, Navigate } from "react-router-dom";
-import Home from "./pages/Home";
-import Profile from "./pages/Profile";
-import ProfileDetails from "./pages/ProfileDetails";
-import ProfileSettings from "./pages/ProfileSettings";
-import Post from "./pages/Post";
-import Login from "./pages/Login";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Home from "./components/Home";
+import Profile from "./components/Profile";
+import Post from "./components/Post";
+import Login from "./components/Login";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 export default function App() {
-  // Simulate authentication status
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   return (
@@ -28,24 +25,21 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
 
-        {/* Protected Route */}
+        {/* Protected route mounts Profile */}
         <Route
           path="/profile/*"
           element={
-            isAuthenticated ? <Profile /> : <Navigate to="/login" replace />
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <Profile />
+            </ProtectedRoute>
           }
-        >
-          {/* Nested Routes */}
-          <Route path="details" element={<ProfileDetails />} />
-          <Route path="settings" element={<ProfileSettings />} />
-        </Route>
+        />
 
         {/* Dynamic Route */}
         <Route path="/post/:id" element={<Post />} />
 
         <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
 
-        {/* 404 fallback */}
         <Route path="*" element={<h2>404: Page Not Found</h2>} />
       </Routes>
     </Router>
