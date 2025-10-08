@@ -5,6 +5,7 @@ import Profile from "./components/Profile";
 import Login from "./components/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import BlogPost from "./components/BlogPost"; // updated
+import ProtectedRoute from "./components/ProtectedRoute";
 // ProfileDetails and ProfileSettings are nested inside Profile
 
 export default function App() {
