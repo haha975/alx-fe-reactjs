@@ -5,19 +5,22 @@ export default function RegistrationForm() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState("");
-  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSuccess("");
-    setError("");
+    const newErrors = {};
 
-    // Basic validation
-    if (!username || !email || !password) {
-      setError("All fields are required");
-      return;
-    }
+    // Basic validation logic
+    if (!username) newErrors.username = "Username is required";
+    if (!email) newErrors.email = "Email is required";
+    if (!password) newErrors.password = "Password is required";
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) return;
 
     try {
       const res = await fetch("https://reqres.in/api/users", {
@@ -33,8 +36,9 @@ export default function RegistrationForm() {
       setUsername("");
       setEmail("");
       setPassword("");
+      setErrors({});
     } catch (err) {
-      setError(err.message);
+      setErrors({ api: err.message });
     }
   };
 
@@ -42,7 +46,7 @@ export default function RegistrationForm() {
     <form onSubmit={handleSubmit} style={{ maxWidth: 400 }}>
       <h3>Controlled Registration Form</h3>
 
-      {error && <div className="error">{error}</div>}
+      {errors.api && <div className="error">{errors.api}</div>}
       {success && <div className="success">{success}</div>}
 
       <div>
@@ -53,6 +57,7 @@ export default function RegistrationForm() {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
+        {errors.username && <div className="error">{errors.username}</div>}
       </div>
 
       <div>
@@ -63,6 +68,7 @@ export default function RegistrationForm() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
+        {errors.email && <div className="error">{errors.email}</div>}
       </div>
 
       <div>
@@ -73,6 +79,7 @@ export default function RegistrationForm() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        {errors.password && <div className="error">{errors.password}</div>}
       </div>
 
       <button type="submit">Register</button>
