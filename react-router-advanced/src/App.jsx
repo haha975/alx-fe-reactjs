@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
-import Post from "./components/Post";
 import Login from "./components/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
+import BlogPost from "./components/BlogPost"; // updated
+// ProfileDetails and ProfileSettings are nested inside Profile
 
 export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -14,7 +15,7 @@ export default function App() {
       <nav style={{ display: "flex", gap: "1rem", marginBottom: "1rem" }}>
         <Link to="/">Home</Link>
         <Link to="/profile">Profile</Link>
-        <Link to="/post/1">Sample Post</Link>
+        <Link to="/blog/1">Sample Blog</Link>
         {isAuthenticated ? (
           <button onClick={() => setIsAuthenticated(false)}>Logout</button>
         ) : (
@@ -25,7 +26,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
 
-        {/* Protected route mounts Profile */}
+        {/* Protected route */}
         <Route
           path="/profile/*"
           element={
@@ -35,8 +36,8 @@ export default function App() {
           }
         />
 
-        {/* Dynamic Route */}
-        <Route path="/post/:id" element={<Post />} />
+        {/* Dynamic route as ALX expects */}
+        <Route path="/blog/:id" element={<BlogPost />} />
 
         <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
 
